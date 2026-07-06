@@ -1,57 +1,64 @@
-import { useUser } from "@clerk/react";
-import { AiToolsData } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/react"
+import { AiToolsData } from "../assets/assets"
+import { useNavigate } from "react-router-dom"
 
 const AiTools = () => {
-  const navigate = useNavigate();
-  const { user } = useUser();
 
-  return (
-    <div className="px-4 sm:px-20 xl:px-32 my-24">
+    const navigate = useNavigate()
+    const { user } = useUser()
 
-      <div className="text-center">
-        <h2 className="text-slate-700 text-[42px] font-semibold">
-          Our Powerful AI Tools
-        </h2>
+    return (
+        <div className="px-4 sm:px-20 xl:px-32 py-28 bg-[#0b1120]">
 
-        <p className="text-gray-500 max-w-lg mx-auto">
-          Everything you need to create, enhance and optimize your content with AI.
-        </p>
-      </div>
+            <div className="text-center">
 
-      <div className="flex flex-wrap mt-10 justify-center">
+                <h2 className="text-white text-4xl sm:text-5xl font-bold">
+                    Explore Our AI Toolkit
+                </h2>
 
-        {AiToolsData.map((tool, index) => (
+                <p className="text-slate-400 max-w-2xl mx-auto mt-5">
+                    Powerful AI tools designed to help you create faster, work smarter and unlock your creativity.
+                </p>
 
-          <div
-            key={index}
-            className="p-8 m-4 max-w-xs rounded-lg bg-[#FDFDFE] shadow-lg border border-gray-100 hover:-translate-y-1 transition-all cursor-pointer"
-            onClick={() => user && navigate(tool.path)}
-          >
+            </div>
 
-            <tool.Icon
-              className="w-12 h-12 p-3 text-white rounded-xl"
-              style={{
-                background: `linear-gradient(to bottom, ${tool.bg.from}, ${tool.bg.to})`,
-              }}
-            />
+            <div className="flex flex-wrap justify-center gap-8 mt-16">
 
-            <h3 className="mt-6 mb-3 text-xl font-semibold">
-              {tool.title}
-            </h3>
+                {AiToolsData.map((tool, index) => (
 
-            <p className="text-gray-400 text-sm max-w-[95%]">
-              {tool.description}
-            </p>
+                    <div
+                        key={index}
+                        onClick={() => user && navigate(tool.path)}
+                        className="group w-80 rounded-3xl border border-slate-800 bg-slate-900/80 backdrop-blur-xl p-8 cursor-pointer hover:-translate-y-3 hover:border-violet-500 transition-all duration-300 hover:shadow-[0_0_35px_rgba(139,92,246,.18)]"
+                    >
 
-          </div>
+                        <tool.Icon
+                            className="w-14 h-14 p-3 rounded-2xl text-white"
+                            style={{
+                                background: `linear-gradient(to bottom, ${tool.bg.from}, ${tool.bg.to})`,
+                            }}
+                        />
 
-        ))}
+                        <h3 className="text-white text-2xl font-semibold mt-7">
+                            {tool.title}
+                        </h3>
 
-      </div>
+                        <p className="text-slate-400 mt-4 leading-7">
+                            {tool.description}
+                        </p>
 
-    </div>
-  );
-};
+                        <button className="mt-8 text-violet-400 font-medium group-hover:text-violet-300 transition-all">
+                            Explore →
+                        </button>
 
-export default AiTools;
+                    </div>
+
+                ))}
+
+            </div>
+
+        </div>
+    )
+}
+
+export default AiTools
