@@ -3,7 +3,7 @@ import { useState } from "react"
 
 const RemoveBackground = () => {
 
-  const [input, setInput] = useState(null)
+  const [setInput] = useState(null)
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
