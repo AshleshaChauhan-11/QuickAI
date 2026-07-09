@@ -1,28 +1,46 @@
 import { clerkClient } from "@clerk/express";
 
-// Middleware to check userId and hasPremiumPlan
+export const auth = async (req, res, next) => {
+  try {
+    const { userId, has } = await req.auth();
 
-export const auth = async ()=>{
-    try {
-        const {userId, has} = await req.auth();
-        const hasPremiumPlan = await has({plan: 'premium'});
+    console.log("Authorization Header:");
+console.log(req.headers.authorization);
 
-        const user = await clerkClient.users.getUser(userId);
+console.log("userId:", userId);
 
-        if (!hasPremiumPlan && user.privateMetadata.free_usage) {
-            req.free_usage = user.privateMetadata.free_usage
-        } else{
-            await clerkClient.users.updateUserMetadata(userId, {
-                privateMetadata: {
-                    free_usage: 0
-                }
-            })
-            req.free_usage = 0;
-        }
-
-        req.plan = hasPremiumPlan ? 'premium' : 'free';
-        next()
-    } catch (error) {
-        resizeBy.json({success: false, message: error.message })
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
     }
-}
+
+    const hasPremiumPlan = await has({ plan: "premium" });
+
+    const user = await clerkClient.users.getUser(userId);
+
+    if (!hasPremiumPlan && user.privateMetadata.free_usage !== undefined) {
+      req.free_usage = user.privateMetadata.free_usage;
+    } else {
+      await clerkClient.users.updateUserMetadata(userId, {
+        privateMetadata: {
+          free_usage: 0,
+        },
+      });
+
+      req.free_usage = 0;
+    }
+
+    req.plan = hasPremiumPlan ? "premium" : "free";
+
+    next();
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

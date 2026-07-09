@@ -1,69 +1,64 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "@clerk/react";
 
-import Home from "./pages/Home"
-import Layout from "./pages/Layout"
-import Dashboard from "./pages/Dashboard"
-import WriteArticle from "./pages/WriteArticle"
-import BlogTitles from "./pages/BlogTitles"
-import GenerateImages from "./pages/GenerateImages"
-import RemoveBackground from "./pages/RemoveBackground"
-import RemoveObject from "./pages/RemoveObject"
-import ReviewResume from "./pages/ReviewResume"
-import Community from "./pages/Community"
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import Dashboard from "./pages/Dashboard";
+import WriteArticle from "./pages/WriteArticle";
+import BlogTitles from "./pages/BlogTitles";
+import GenerateImages from "./pages/GenerateImages";
+import RemoveBackground from "./pages/RemoveBackground";
+import RemoveObject from "./pages/RemoveObject";
+import ReviewResume from "./pages/ReviewResume";
+import Community from "./pages/Community";
 
 const App = () => {
+  const { getToken } = useAuth();
 
-    return (
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const token = await getToken();
 
-        <Routes>
+        console.log("=================================");
+        console.log("CLERK SESSION TOKEN:");
+        console.log(token);
+        console.log("=================================");
+      } catch (error) {
+        console.error("Failed to fetch Clerk token:", error);
+      }
+    };
 
-            <Route path="/" element={<Home />} />
+    fetchToken();
+  }, [getToken]);
 
-            <Route path="/ai" element={<Layout />}>
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-                <Route index element={<Dashboard />} />
+      <Route path="/ai" element={<Layout />}>
+        <Route index element={<Dashboard />} />
 
-                <Route
-                    path="write-article"
-                    element={<WriteArticle />}
-                />
+        <Route path="write-article" element={<WriteArticle />} />
 
-                <Route
-                    path="blog-titles"
-                    element={<BlogTitles />}
-                />
+        <Route path="blog-titles" element={<BlogTitles />} />
 
-                <Route
-                    path="generate-images"
-                    element={<GenerateImages />}
-                />
+        <Route path="generate-images" element={<GenerateImages />} />
 
-                <Route
-                    path="remove-background"
-                    element={<RemoveBackground />}
-                />
+        <Route
+          path="remove-background"
+          element={<RemoveBackground />}
+        />
 
-                <Route
-                    path="remove-object"
-                    element={<RemoveObject />}
-                />
+        <Route path="remove-object" element={<RemoveObject />} />
 
-                <Route
-                    path="review-resume"
-                    element={<ReviewResume />}
-                />
+        <Route path="review-resume" element={<ReviewResume />} />
 
-                <Route
-                    path="community"
-                    element={<Community />}
-                />
+        <Route path="community" element={<Community />} />
+      </Route>
+    </Routes>
+  );
+};
 
-            </Route>
-
-        </Routes>
-
-    )
-
-}
-
-export default App
+export default App;
