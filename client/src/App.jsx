@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import { useAuth } from "@clerk/react";
 
 import Home from "./pages/Home";
@@ -14,51 +14,85 @@ import ReviewResume from "./pages/ReviewResume";
 import Community from "./pages/Community";
 
 const App = () => {
+
   const { getToken } = useAuth();
 
   useEffect(() => {
+
     const fetchToken = async () => {
+
       try {
+
         const token = await getToken();
 
-        console.log("=================================");
-        console.log("CLERK SESSION TOKEN:");
+        console.log("================================");
+        console.log("CLERK SESSION TOKEN");
         console.log(token);
-        console.log("=================================");
+        console.log("================================");
+
       } catch (error) {
-        console.error("Failed to fetch Clerk token:", error);
+
+        console.error(error);
+
       }
+
     };
 
     fetchToken();
+
   }, [getToken]);
 
   return (
+
     <Routes>
+
       <Route path="/" element={<Home />} />
 
       <Route path="/ai" element={<Layout />}>
+
         <Route index element={<Dashboard />} />
 
-        <Route path="write-article" element={<WriteArticle />} />
+        <Route
+          path="write-article"
+          element={<WriteArticle />}
+        />
 
-        <Route path="blog-titles" element={<BlogTitles />} />
+        <Route
+          path="blog-titles"
+          element={<BlogTitles />}
+        />
 
-        <Route path="generate-images" element={<GenerateImages />} />
+        <Route
+          path="generate-images"
+          element={<GenerateImages />}
+        />
 
         <Route
           path="remove-background"
           element={<RemoveBackground />}
         />
 
-        <Route path="remove-object" element={<RemoveObject />} />
+        <Route
+          path="remove-object"
+          element={<RemoveObject />}
+        />
 
-        <Route path="review-resume" element={<ReviewResume />} />
+        <Route
+          path="review-resume"
+          element={<ReviewResume />}
+        />
 
-        <Route path="community" element={<Community />} />
+        <Route
+          path="community"
+          element={<Community />}
+        />
+
       </Route>
+
     </Routes>
+
   );
+
 };
 
 export default App;
