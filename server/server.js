@@ -14,6 +14,11 @@ await connectCloudinary()
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(req.method, req.url);
+  next();
+});
+
 // Clerk Authentication Middleware
 app.use(clerkMiddleware());
 
@@ -47,5 +52,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
