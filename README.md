@@ -4,9 +4,9 @@
 
 ## 🌐 Live Demo
 
-**Frontend:** https://quick-ai-sage-zeta.vercel.app/
+**Frontend:** [Click here to view](https://quick-ai-sage-zeta.vercel.app/)
 
-**Backend API:** https://quick-ai-server-rho-three.vercel.app/
+**Backend API:** [Click here to view](https://quick-ai-server-rho-three.vercel.app/)
 
 > ⚠️ AI Image Generation and Resume Review require Premium access.
 
