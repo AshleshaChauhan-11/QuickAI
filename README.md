@@ -2,6 +2,14 @@
 
 > An AI-powered SaaS platform that helps users generate high-quality content, create AI images, edit images, and improve productivity using Google's Gemini AI.
 
+## 🌐 Live Demo
+
+**Frontend:** https://quick-ai-sage-zeta.vercel.app/
+
+**Backend API:** https://quick-ai-server-rho-three.vercel.app/
+
+> ⚠️ AI Image Generation and Resume Review require Premium access.
+
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
 ![PostgreSQL](https://img.shields.io/badge/Database-Neon-blue)
@@ -36,6 +44,24 @@ Instead of switching between different AI websites for writing, image generation
 
 ---
 
+## ✨ New Features
+
+- 🔐 Clerk Authentication
+- 👤 User Dashboard
+- 📊 AI Usage Tracking
+- 🧠 Groq-powered Article Generator
+- 📰 AI Blog Title Generator
+- 📄 Resume Review (PDF)
+- 🖼️ AI Image Generator
+- 🎨 Background Removal
+- ✨ Object Removal
+- 🌍 Community Feed
+- ❤️ Like Community Posts
+- ☁️ Cloudinary Image Storage
+- 💳 Free & Premium Plans
+
+---
+
 # Tech Stack 🛠
 
 ## Frontend
@@ -63,8 +89,13 @@ Instead of switching between different AI websites for writing, image generation
 
 ## AI
 
-- Google Gemini API
+- Groq Cloud API
 - OpenAI Compatible SDK
+- Cloudinary
+
+## Deployment
+
+- Vercel
 
 ---
 
@@ -97,6 +128,10 @@ QuickAI
 
 ```bash
 git clone https://github.com/AshleshaChauhan-11/QuickAI.git
+```
+or
+```bash
+git clone https://github.com/ftrudra7/QuickAI.git
 ```
 
 Move inside the project
@@ -134,7 +169,7 @@ PORT=3000
 
 DATABASE_URL=your_neon_database_url
 
-GEMINI_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
 
 CLERK_SECRET_KEY=your_clerk_secret_key
 
@@ -298,13 +333,36 @@ Built and Maintained By:
 
 Special thanks to the developers and maintainers of:
 
-- Google Gemini API
+- Groq Cloud API
 - Clerk
 - Neon PostgreSQL
 - React
 - Express.js
 - Node.js
 - Tailwind CSS
+
+---
+
+## 🤖 AI Providers
+
+- Groq API
+    - Article Generator
+    - Blog Title Generator
+    - Resume Review
+
+- ClipDrop API
+    - AI Image Generation
+
+- Cloudinary
+    - Image Storage
+    - Background Removal
+    - Object Removal
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ---
 
