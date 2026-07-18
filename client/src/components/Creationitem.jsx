@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Markdown from "react-markdown"
 
-const Creationitem = ({ item }) => {
+const CreationItem = ({ item }) => {
 
     const [expanded, setExpanded] = useState(false)
 
@@ -79,4 +79,4 @@ const Creationitem = ({ item }) => {
 
 }
 
-export default Creationitem
+export default CreationItem
