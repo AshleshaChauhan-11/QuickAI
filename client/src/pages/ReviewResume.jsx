@@ -30,7 +30,7 @@ const ReviewResume = () => {
       const token = await getToken();
 
       const { data } = await axios.post(
-        "/api/ai/review-resume",
+        "/api/ai/resume-review",
         formData,
         {
           headers: {
@@ -60,28 +60,21 @@ const ReviewResume = () => {
 
   return (
     <div className="p-8">
-
       <div className="grid lg:grid-cols-2 gap-8">
-
         {/* Left Column */}
-
         <form
           onSubmit={onSubmitHandler}
           className="bg-[#111827] border border-slate-700 rounded-2xl p-8"
         >
-
           <div className="flex items-center gap-3 mb-8">
-
             <Sparkles className="w-6 h-6 text-[#00DA83]" />
 
             <h1 className="text-3xl font-bold text-white">
               Resume Review
             </h1>
-
           </div>
 
           <div>
-
             <p className="text-sm text-slate-300 mb-2">
               Upload Your Resume
             </p>
@@ -97,7 +90,6 @@ const ReviewResume = () => {
             <p className="text-xs text-slate-500 mt-2">
               Supports PDF only
             </p>
-
           </div>
 
           <button
@@ -105,7 +97,6 @@ const ReviewResume = () => {
             type="submit"
             className="w-full mt-8 rounded-xl bg-gradient-to-r from-[#00DA83] to-[#009BB3] py-3 flex items-center justify-center gap-2 text-white font-medium hover:opacity-90 transition disabled:opacity-60"
           >
-
             {loading ? (
               <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
             ) : (
@@ -113,31 +104,22 @@ const ReviewResume = () => {
             )}
 
             {loading ? "Reviewing..." : "Review Resume"}
-
           </button>
-
         </form>
 
         {/* Right Column */}
-
         <div className="bg-[#111827] border border-slate-700 rounded-2xl p-8 flex flex-col min-h-[650px]">
-
           <div className="flex items-center gap-3 mb-6">
-
             <FileText className="w-6 h-6 text-[#00DA83]" />
 
             <h1 className="text-2xl font-bold text-white">
               Analysis Results
             </h1>
-
           </div>
 
           {!content ? (
-
             <div className="flex-1 flex justify-center items-center">
-
               <div className="text-center text-slate-400">
-
                 <FileText className="w-16 h-16 mx-auto mb-5" />
 
                 <p>
@@ -148,31 +130,17 @@ const ReviewResume = () => {
                   </span>{" "}
                   to get started.
                 </p>
-
               </div>
-
             </div>
-
           ) : (
-
             <div className="prose prose-invert max-w-none text-slate-300 overflow-y-auto flex-1 pr-2">
-
-              <Markdown>
-                {content}
-              </Markdown>
-
+              <Markdown>{content}</Markdown>
             </div>
-
           )}
-
         </div>
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default ReviewResume;
